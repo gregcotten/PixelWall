@@ -21,7 +21,6 @@ void loop(){
             Tlc.update();
             
         }
-        Serial.println("Command: " + String(command) + " Address: " + String(address) + " Red: " + String(red) + " Green: " + String(green) + " Blue: " + String(blue));
     }
 }
 
