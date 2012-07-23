@@ -3,10 +3,10 @@
 
 //Command Set
 const int SET_PIXEL_COMMAND = 1;
-const int UPDATE_PIXELS_COMMAND = 2;
+const int UPDATE_ALL_PIXELS_COMMAND = 2;
 
 void setup(){
-    Tlc.init(0);
+    Tlc.init(0); //blank all LEDs attached
     Serial.begin(115200);
 }
 
@@ -27,7 +27,7 @@ void loop(){
                 Tlc.setRGB1(address, red, green, blue);
                 break;
                 
-            case UPDATE_PIXELS_COMMAND:
+            case UPDATE_ALL_PIXELS_COMMAND:
                 for (int i = 1; i <= 8; i++){Serial.read();} //read in rest of packet (dummy data)
                 Tlc.update();
                 break;
