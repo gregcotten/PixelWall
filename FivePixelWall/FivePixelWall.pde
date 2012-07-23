@@ -19,7 +19,6 @@ void loop(){
         if (command == 1){
             Tlc.setRGB1(address, red, green, blue);
             Tlc.update();
-            
         }
     }
 }
