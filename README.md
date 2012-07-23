@@ -22,7 +22,7 @@ A 10 byte communication packet is sent to the microcontroller. Each parameter is
 4. Green Value / Dummy
 5. Blue Value / Dummy
 
-There's a ruby gem for this! The github page for it is [here](https://github.com/supapuerco/lorraine).
+There's a ruby gem for this! It is called [Lorraine](https://github.com/supapuerco/lorraine).
 
 ## Contributing
 
