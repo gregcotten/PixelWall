@@ -14,7 +14,7 @@ In the Arduino IDE or MPIDE make sure you set your sketchbook location to wherev
 
 ## Usage
 
-A 10 byte communication packet is sent to the MCU. Each parameter is a unsigned short with MSB byte order:
+A 10 byte communication packet is sent to the microcontroller. Each parameter is a unsigned short with MSB byte order:
 
 1. Command 
 2. Pixel Address / Dummy 
