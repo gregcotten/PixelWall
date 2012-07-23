@@ -13,23 +13,24 @@ void setup(){
 void loop(){
     if(Serial.available() >= 2){ 
         int command = SerialTools::readShortFromSerial();
-        
-        if(command == SET_PIXEL_COMMAND){
-          while (Serial.available() <= 8){} //wait for data to arrive
-          
-          int address = SerialTools::readShortFromSerial();
 
-          int red = SerialTools::readShortFromSerial();
-          int green = SerialTools::readShortFromSerial();
-          int blue = SerialTools::readShortFromSerial();
-          
-          Tlc.setRGB1(address, red, green, blue);
-        }
-        else if(command == UPDATE_PIXELS_COMMAND){
-            for (int i = 1; i <= 8; i++){
-                Serial.read(); //read dummy data
-            }
-            Tlc.update();
+        switch(command){
+            case SET_PIXEL_COMMAND:
+                while (Serial.available() <= 8){} //wait for rest of data to arrive
+
+                int address = SerialTools::readShortFromSerial();
+
+                int red = SerialTools::readShortFromSerial();
+                int green = SerialTools::readShortFromSerial();
+                int blue = SerialTools::readShortFromSerial();
+
+                Tlc.setRGB1(address, red, green, blue);
+                break;
+                
+            case UPDATE_PIXELS_COMMAND:
+                for (int i = 1; i <= 8; i++){Serial.read();} //read in rest of packet (dummy data)
+                Tlc.update();
+                break;
         }
         
     }
