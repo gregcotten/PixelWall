@@ -11,18 +11,18 @@ void setup(){
 }
 
 void loop(){
-    if (Serial.available() >= 2){ 
-        int command = SerialTools::readIntFromSerial();
+    if(Serial.available() >= 2){ 
+        int command = SerialTools::readShortFromSerial();
         
-        if (command == SET_PIXEL_COMMAND){
+        if(command == SET_PIXEL_COMMAND){
           while (Serial.available() <= 8){} //wait for data to arrive
           
-          int address = SerialTools::readIntFromSerial();
+          int address = SerialTools::readShortFromSerial();
 
-          int red = SerialTools::readIntFromSerial();
-          int green = SerialTools::readIntFromSerial();
-          int blue = SerialTools::readIntFromSerial();
-
+          int red = SerialTools::readShortFromSerial();
+          int green = SerialTools::readShortFromSerial();
+          int blue = SerialTools::readShortFromSerial();
+          
           Tlc.setRGB1(address, red, green, blue);
         }
         else if(command == UPDATE_PIXELS_COMMAND){
