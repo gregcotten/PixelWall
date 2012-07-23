@@ -1,5 +1,5 @@
 # PixelWall
-Light it up with TLC5940s on your favorite microcontroller!
+Light up some RGB LEDs with TI TLC5940s with your favorite microcontroller!
 
 TODO: Real description
 
