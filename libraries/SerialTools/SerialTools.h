@@ -9,8 +9,8 @@ namespace SerialTools {
     int readShortFromSerial();
 	void writeLongToSerial(long number);
 	long readLongFromSerial();
-    void SerialTools::waitForBytes(int numBytes);
-    void SerialTools::readDummyBytes(int numBytes);
+    void waitForBytes(int numBytes);
+    void readDummyBytes(int numBytes);
 }
 
 #endif

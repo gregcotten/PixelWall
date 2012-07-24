@@ -1,5 +1,6 @@
 #include <SerialTools.h>
 #include <Tlc5940.h>
+#include <RGBTools.h>
 
 //Command Set
 const int SET_PIXEL_COMMAND = 1;
@@ -10,14 +11,13 @@ const int SET_EFFECT = 3;
 //Effect variables
 int currentEffect = 0; //currentEffect == 0 means no effect is on
 int hueDegree = 0;
-int globalRGB_value[3];
+int globalRGB_value[3] = {0,0,0};
 
 //Temp variables
 int red;
 int green;
 int blue;
 int pixelAddress;
-int effectAddress;
 
 void setup(){
     Tlc.init(0); //blank all LEDs attached
@@ -51,7 +51,7 @@ void doSerialDuties(){
                 Tlc.update();
                 break;
             case SET_EFFECT:
-                effect = SerialTools::readShortFromSerial();
+                currentEffect = SerialTools::readShortFromSerial();
                 SerialTools::readDummyBytes(6);
                 break;
         }
@@ -63,7 +63,7 @@ void doEffectDuties(){
     if (currentEffect == 1){
         //NOTE: HARDCODED AS FUCK
         hueDegree = (hueDegree+1)%359;
-        getHSVtoRGB(globalRGB_value, hueDegree, saturation, brightness);
+        RGBTools::getHSVtoRGB(globalRGB_value, hueDegree, 1.0, 1.0);
         Tlc.setRGB1(0, globalRGB_value[0], globalRGB_value[1], globalRGB_value[2]);
 		Tlc.setRGB1(1, globalRGB_value[0], globalRGB_value[1], globalRGB_value[2]);
 		Tlc.setRGB1(2, globalRGB_value[0], globalRGB_value[1], globalRGB_value[2]);
