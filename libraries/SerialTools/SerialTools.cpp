@@ -31,3 +31,12 @@ long SerialTools::readLongFromSerial(){
 	return ((byte1 << 24) + (byte2 << 16) + (byte3 << 8) + (byte4));
 }
 
+void SerialTools::waitForBytes(int numBytes){
+    while (Serial.available() <= numBytes){}
+}
+
+void SerialTools::readDummyBytes(int numBytes){
+    SerialTools::waitForBytes(numBytes);
+    for (int i = 1; i <= numBytes; i++){Serial.read();}
+}
+
