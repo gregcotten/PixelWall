@@ -12,19 +12,19 @@ void setup(){
 
 void loop(){
     if(Serial.available() >= 2){ 
-        int command = SerialTools::readShortFromSerial();
+        int serialCommand = SerialTools::readShortFromSerial();
 
-        switch(command){
+        switch(serialCommand){
             case SET_PIXEL_COMMAND:
                 while (Serial.available() <= 8){} //wait for rest of data to arrive
 
-                int address = SerialTools::readShortFromSerial();
+                int pixelAddress = SerialTools::readShortFromSerial();
 
                 int red = SerialTools::readShortFromSerial();
                 int green = SerialTools::readShortFromSerial();
                 int blue = SerialTools::readShortFromSerial();
 
-                Tlc.setRGB1(address, red, green, blue);
+                Tlc.setRGB1(pixelAddress, red, green, blue);
                 break;
                 
             case UPDATE_ALL_PIXELS_COMMAND:
