@@ -5,6 +5,12 @@
 const int SET_PIXEL_COMMAND = 1;
 const int UPDATE_ALL_PIXELS_COMMAND = 2;
 
+//Temp variables
+int red;
+int green;
+int blue;
+int pixelAddress;
+
 void setup(){
     Tlc.init(0); //blank all LEDs attached
     Serial.begin(115200);
@@ -18,11 +24,11 @@ void loop(){
             case SET_PIXEL_COMMAND:
                 while (Serial.available() <= 8){} //wait for rest of data to arrive
 
-                int pixelAddress = SerialTools::readShortFromSerial();
+                pixelAddress = SerialTools::readShortFromSerial();
 
-                int red = SerialTools::readShortFromSerial();
-                int green = SerialTools::readShortFromSerial();
-                int blue = SerialTools::readShortFromSerial();
+                red = SerialTools::readShortFromSerial();
+                green = SerialTools::readShortFromSerial();
+                blue = SerialTools::readShortFromSerial();
 
                 Tlc.setRGB1(pixelAddress, red, green, blue);
                 break;
