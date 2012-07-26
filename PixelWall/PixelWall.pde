@@ -61,7 +61,6 @@ void doSerialDuties(){
 
 void doEffectDuties(){
     if (currentEffect == 1){
-        //NOTE: HARDCODED AS FUCK
         hueDegree = (hueDegree+1)%359;
         RGBTools::getHSVtoRGB(globalRGB_value, hueDegree, 1.0, 1.0);
         Tlc.setRGB1(0, globalRGB_value[0], globalRGB_value[1], globalRGB_value[2]);
